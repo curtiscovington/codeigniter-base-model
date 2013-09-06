@@ -144,8 +144,10 @@ class MY_Model extends CI_Model
         $row = $this->_database->get($this->_table)
                         ->{$this->_return_type()}();
         $this->_temporary_return_type = $this->return_type;
-
-        $row = $this->trigger('after_get', $row);
+	if ($row)
+	{
+        	$row = $this->trigger('after_get', $row);
+	}
 
         $this->_with = array();
         return $row;
